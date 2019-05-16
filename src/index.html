@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BrainFX</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="../src/app/swapp.js"></script>
+</head>
+<body  ng-app="myApp" ng-controller="myCtrl" class="jumbotron text-center" style="background-color:{{bgcolor}}">
+    
+  <h1>BrainFx Mini Project!</h1>
+  <br><br>
+  <div>
+      <div>
+          <button ng-click="page='first'" class="btn btn-primary">To Do List</button>
+          <button ng-click="page='second'" class="btn btn-success">Stop Watch</button>
+          <button ng-click="page='third'" class="btn btn-info">HTTP JSON</button>
+          <button ng-click="page='fourth'" class="btn btn-warning">HTTP PICS</button>
+      </div>
+      
+      <div class="container">
+      <div ng-show="page === 'first'" class="well"> 
+          <h2>You have {{numtasks()}} Tasks to finish</h2>
+          <ul ng-repeat="task in tasks">
+            <h5 ng-click="remove($index)" class="glyphicon glyphicon-remove"></h5>
+              <label>{{task.text}}</label>
+          </ul>
+          <div class="text-center">
+          <form>
+            <input placeholder="Add Task" type="text" ng-model="name" class="form-control"/><br>
+            <button ng-click="addTask()" class="btn btn-primary">Add Task</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <div class="col-sm-13">
+      <div ng-show="page === 'second'" class="well">
+          <h1>BrainFx Stop Watch!</h1>
+  
+          <div>
+             <h1>{{hrs}}:{{mins}}:{{secs}}</h1><br><br>
+          </div>
+          <div class="progress">
+              <div class="progress-bar progress-bar-striped active" style="width:{{secs}}%">
+                {{secs}} seconds
+              </div>
+            </div>
+            <button ng-click="startTimer()" class="btn btn-success"><h1>Start </h1></button>
+            <button ng-click="stopTimer()" class="btn btn-info"><h1>Pause</h1></button>
+            <button ng-click="resetTimer()" class="btn btn-danger"><h1>Reset</h1></button>
+      </div>
+    </div>
+  </div>
+
+      <div class="container">
+      <div ng-show="page === 'third'" class="well">
+          <h2>This is an HTTP JSON request</h2><br><br>
+          <blockquote class="text-justify">
+          <div ng-repeat="x in httpreq">
+            <span class="glyphicon glyphicon-order"></span>{{x.id}} -- {{x.name}} -- {{x.username}} -- {{x.email}}<br>
+            </div>
+          </blockquote>
+      </div>
+    </div>
+
+    <div class="container">
+      <div ng-show="page === 'fourth'" class="well">
+          <h2>This is an HTTP JSON request for PICS</h2><br><br>
+          <blockquote class="text-justify">
+          <div ng-repeat="x in httppics" ng-if="$index < 10">
+            {{x.id}} -- <a href="{{x.url}}">{{x.url}}</a><br>
+            </div>
+          </blockquote>
+      </div>
+    </div>
+        
+  </div>
+</body>
+</html>
