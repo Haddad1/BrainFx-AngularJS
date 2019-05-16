@@ -8,3 +8,7 @@
 ## fit to join your team or not.
 
 ## hope to hear from you soon.
+
+side not:
+
+i only included the src files because the node modules were giving me a hard time for some reason.
